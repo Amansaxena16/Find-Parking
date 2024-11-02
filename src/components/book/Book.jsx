@@ -1,7 +1,22 @@
 import Button from "../button/Button"
 import ParkingArea from "../parkingArea/ParkingArea"
+import { useState } from "react";
 
 function Book(){
+    // Lifted state: selectedSpots and setSelectedSpots
+    const [selectedSpots, setSelectedSpots] = useState(new Set());
+
+    function handleBookSpots(){
+        console.log('clicked')
+        if (selectedSpots.size === 0) {
+            alert("Please select a spot to book.");
+            return;
+        }
+        else{
+            alert(`Booking confirmed for spots: ${[...selectedSpots].join(', ')}`);
+            setSelectedSpots(new Set()); // Clear selection after booking
+        }
+    }
     return(
         <>
         {/* Space Info Navbar div start from here */}
@@ -18,15 +33,17 @@ function Book(){
                     <div className="box w-4 h-4 border bg-slate-200 rounded-[2px]"></div>
                     <span className="text-slate-500">Sold</span>
                 </div>
-                <a href="#">
-                    <Button className="bg-green-700">Book</Button>
-                </a>
+                <Button onClick={handleBookSpots} className="bg-green-700">Book Spots</Button>
             </div>
            {/* end here */}
 
             {/* parking area div start from here */}
             <div className="area">
-                <ParkingArea />  
+                {/* Pass selectedSpots and setSelectedSpots as props */}
+                <ParkingArea
+                    selectedSpots={selectedSpots}
+                    setSelectedSpots={setSelectedSpots}
+                />
             </div>
             {/* end here */}
         </>

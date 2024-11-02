@@ -1,11 +1,8 @@
 import React, {useState} from "react";
 
-function ParkingArea() {
+function ParkingArea({selectedSpots,setSelectedSpots}) {
     const rows = Array.from({ length: 26 }, (_, index) => String.fromCharCode(65 + index)); // A-Z
     const spotsPerRow = 10;
-
-    // State to track selected spots
-    const [selectedSpots, setSelectedSpots] = useState(new Set())
 
     // Function to handle selection of spot
     const handleSpotClick = (spotId) => {
