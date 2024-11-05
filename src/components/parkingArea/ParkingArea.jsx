@@ -5,7 +5,7 @@ function ParkingArea({selectedSpots,setSelectedSpots}) {
     const spotsPerRow = 10;
 
     // Function to handle selection of spot
-    const handleSpotClick = (spotId) => {
+        function handleSpotClick(spotId){
         setSelectedSpots((prev) => {
             const newSelected = new Set(prev);
             if (newSelected.has(spotId)) {
